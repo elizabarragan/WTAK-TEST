@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps con Marcador</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <!-- Agregar la API de Google Maps y Places -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaI0T3PdP09HCkf-3bjXyZHBgfV3QWlQw&libraries=places&callback=initMap" async defer></script>
+    <script>
+        function initMap() {
+            // Coordenadas del centro del mapa
+            const location = { lat: 19.712007, lng: -102.548645 };
+            // Crear el mapa centrado en la ubicación dada
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 12,
+                center: location,
+                mapTypeId: google.maps.MapTypeId.SATELLITE,
+                tilt: 45
+            });
+            // Crear el marcador y colocarlo en el mapa
+            const marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                title: "Ciudad de México",
+            });
+            
+            // Crear el cuadro de búsqueda y el autocompletado
+            const input = document.getElementById('pac-input');
+            const searchBox = new google.maps.places.SearchBox(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            // Sesión de autocompletado en la caja de búsqueda.
+            map.addListener('bounds_changed', function() {
+                searchBox.setBounds(map.getBounds());
+            });
+
+            let markers = [];
+            searchBox.addListener('places_changed', function() {
+                const places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    return;
+                }
+
+                // Limpiar los marcadores anteriores.
+                markers.forEach(function(marker) {
+                    marker.setMap(null);
+                });
+                markers = [];
+
+                // Para cada lugar, obtener el icono, nombre y ubicación.
+                const bounds = new google.maps.LatLngBounds();
+                places.forEach(function(place) {
+                    if (!place.geometry) {
+                        console.log("Returned place contains no geometry");
+                        return;
+                    }
+                    const icon = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                    };
+
+                    // Crear un marcador para cada lugar.
+                    markers.push(new google.maps.Marker({
+                        map: map,
+                        icon: icon,
+                        title: place.name,
+                        position: place.geometry.location
+                    }));
+
+                    if (place.geometry.viewport) {
+                        // Solo para lugares con viewport.
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
+                    }
+                });
+                map.fitBounds(bounds);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#support">Support</a>
+        <a href="#about">About</a>
+        <a href="#settings">Settings</a>
+        <a href="#clearcontent">Clear Content</a>
+        <a href="#contact" class="right">Contact Us</a>
+    </div>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map"></div>
+</body>
+</html>
+

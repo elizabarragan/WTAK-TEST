@@ -2,21 +2,26 @@
 <html lang="en">
   <head>
 	  
-	  <!-- Iniciamos agregando imagen de fondo de la pagina web -->
+<!-- Iniciamos agregando imagen de fondo de la pagina web -->
 	  
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página con Imagen de Fondo</title>
     <link rel="stylesheet" href="styles.css">
+	  
+<!-- Bootstrap -->
+	<link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+	<link href="style.css" rel="stylesheet" type="text/css">
+  </head>
 <body>
 	
 	
-	<!-- Agregamos la caja de inicio de sesion y registro -->
+<!-- Agregamos la caja de inicio de sesion y registro -->
 	
 	  <div class="background-image">
         <div class="login-box">
             <h2>Welcome</h2>
-            <form>
+            <form id="loginForm">
                 <div class="input-group">
                     <label for="username">User:</label>
                     <input type="text" id="username" required>
@@ -27,7 +32,7 @@
                 </div>
                 <button type="submit">Login</button>
                 <button type="button" class="register-btn">Register</button>
-            </form>
+          </form>
             <p><a href="#" class="forgot-password">Forgot Password?</a></p>
         </div>
 		  
@@ -74,7 +79,7 @@
       </div>
 	</div>
 	
-		   <script>
+	<script>
         // Abre el modal al hacer clic en el botón de registrarse
         document.querySelector('.register-btn').addEventListener('click', function() {
             document.getElementById('registerModal').style.display = 'block';
@@ -96,33 +101,66 @@
         document.getElementById('registerForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Evita el envío del formulario por defecto
             document.getElementById('registerModal').style.display = 'none';
-            // Aquí puedes agregar la lógica para enviar los datos del formulario al servidor usando AJAX u otra técnica
-        });
-    </script>
-	
-	<!-- PARA QUE EL USUARIO AL PONER SU INFORMACION EN EL REGISTRO PUEDA ENVIARSE AL SERVIDOR -->
-	
+	   // Aquí puedes agregar la lógica para enviar los datos del formulario al servidor usando AJAX u otra técnica
+		 });
 
-	
-	
-	
-	
-	
-	<!-- INFORMACION -->
-</body>
-    <!-- Bootstrap -->
-	<link href="css/bootstrap-4.4.1.css" rel="stylesheet">
-	<link href="style.css" rel="stylesheet" type="text/css">
-  </head>
-  <body>
-  	<!-- body code goes here -->
+      // Validación de contraseña y envío de datos usando AJAX
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita el envío del formulario por defecto
+
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+        const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+
+        if (!regex.test(password)) {
+            alert('La contraseña debe tener al menos 8 caracteres, incluyendo una letra mayúscula, un número y un carácter especial.');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            alert('Las contraseñas no coinciden.');
+            return;
+        }
+
+        // Recopila los datos del formulario
+        const formData = new FormData(document.getElementById('registerForm'));
+
+        // Envía los datos usando AJAX
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'URL_DEL_SERVIDOR', true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                alert('Formulario enviado exitosamente.');
+                document.getElementById('registerModal').style.display = 'none';
+            } else {
+                alert('Hubo un problema al enviar el formulario. Inténtalo nuevamente.');
+            }
+        
+		};
+        xhr.send(formData);
+			  
+    });
+			   
+	    // Lógica para iniciar sesión y redirigir a la pantalla principal
+        document.getElementById('login-btn').addEventListener('click', function(event) {
+            event.preventDefault(); // Evita el comportamiento por defecto del botón
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Aquí puedes agregar la lógica para validar las credenciales de inicio de sesión
+            // Por simplicidad, asumiremos que las credenciales son válidas
+
+            // Redirige a la pantalla principal
+            window.location.href = 'file:///C:/WTAK%20TEST%201/inicial.html';
+			  
+	 });
+    </script>
 
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 	<script src="js/jquery-3.4.1.min.js"></script>
-
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/popper.min.js"></script> 
 	<script src="js/bootstrap-4.4.1.js"></script>
-  </body>
+</body>
 </html>

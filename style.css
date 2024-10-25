@@ -1,5 +1,6 @@
 @charset "utf-8";
-/* ESTE COMIENZO COLOCA LA IMAGEN DE FONDO DEL SITIO WEB */
+
+/* ESTILO DE LA IMAGEN DE FONDO */
 .background-image {
     background-image: url('file:///C|/WTAK TEST/imagenes/fondo.jpg'); /* Ruta relativa a una carpeta en tu equipo */
     background-size: cover; /* Ajusta la imagen para que cubra todo el fondo */
@@ -7,23 +8,17 @@
     background-repeat: no-repeat; /* Evita la repetición de la imagen */
     width: 100%;
     height: 100vh; /* Hace que la imagen cubra toda la altura del viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-/* AQUI SE AGREGA EL CUADRO PARA INICIO DE SESION Y REGISTRO */
+
+/* ESTILO DEL CUADRO DE INICIO DE SESION */
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
     font-family: Arial, sans-serif;
-}
-
-.background-image {
-    background-image: url('file:///C|/WTAK TEST/imagenes/fondo.jpg'); /* Reemplaza con la ruta de tu imagen */
-    background-size: cover;
-    background-position: center;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .login-box {
@@ -39,8 +34,7 @@ body, html {
     margin: 15px 0;
 }
 
-input[type="text"],
-input[type="password"] {
+input[type="text"], input[type="password"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -76,69 +70,121 @@ button:hover {
 .forgot-password:hover {
     text-decoration: underline; /* Subrayar en hover */
 }
-form .input-group label {
-    font-family: Roca;
-}
-.background-image .login-box h2 {
+
+/* ESTILOS PARA EL TEXTO */
+form .input-group label, .background-image .login-box h2 {
     font-family: Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", serif;
 }
-form .input-group label {
-    font-family: Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", serif;
-}
-
-
 
 /* AGREGAR ESTILO DE MODAL PARA EL REGISTRO */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
 
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 4px;
+}
 
-        /* Estilos para el modal */
-        .modal {
-            display: none; /* Oculto por defecto */
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
 
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 4px;
-        }
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
+.form-group {
+    margin-bottom: 15px;
+}
 
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
 
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
+/* Estilo para ajustar el tamaño y posición del mapa */
+#map {
+    height: 700px;
+    width: 80%; /* Ajusta esto para dar más espacio a los lados */
+    margin: 100px auto; /* Centra el mapa y agrega separación superior */
+    border: 1px solid #ccc; /* Opción de borde para diferenciar el mapa */
+}
 
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
+/* Estilo de la barra superior*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.navbar {
+    background-color: #a0c9b9; /* Verde militar */
+    overflow: hidden;
+    border-radius: 15px;
+    margin: 10px;
+    padding: 10px;
+}
+.navbar a {
+    float: left;
+    display: block;
+    color: #000000;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+.navbar a:hover {
+    background-color: #ddd !important;
+    color: #4682B4 !important;
+    border: 2px solid #4682B4 !important;
+    border-radius: 10px !important;
+}
+.navbar .right {
+    float: right;
+}
+/* Estilo para ajustar el tamaño y posición del mapa */
+#map {
+    height: 700px;
+    width: 80%; /* Ajusta esto para dar más espacio a los lados */
+    margin: 100px auto; /* Centra el mapa y agrega separación superior */
+    border: 1px solid #ccc; /* Opción de borde para diferenciar el mapa */
+}
+/* Estilo para el cuadro de búsqueda */
+.controls {
+    margin: 15px;
+    border: 1px solid transparent;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 32px;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    font-size: 15px;
+    font-weight: 300;
+    text-overflow: ellipsis;
+    width: 240px;
+}
