@@ -18,12 +18,6 @@
                 mapTypeId: google.maps.MapTypeId.SATELLITE,
                 tilt: 45
             });
-            // Crear el marcador y colocarlo en el mapa
-            const marker = new google.maps.Marker({
-                position: location,
-                map: map,
-                title: "Ciudad de México",
-            });
             
             // Crear el cuadro de búsqueda y el autocompletado
             const input = document.getElementById('pac-input');
@@ -93,8 +87,61 @@
         <a href="#clearcontent">Clear Content</a>
         <a href="#contact" class="right">Contact Us</a>
     </div>
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+	 <div class="sidebar">
+        <a href="#" class="dropdown-btn">Tools</a>
+        <div class="dropdown-container">
+            <a href="#">Pin</a>
+            <a href="#">Alerts</a>
+            <a href="#">Markers</a>
+            <a href="#">Shapes</a>
+            <a href="#">Air</a>
+        </div>
+
+        <a href="#" class="dropdown-btn">Teams</a>
+        <div class="dropdown-container">
+            <a href="#">Blue</a>
+            <a href="#">Yellow</a>
+            <a href="#">Green</a>
+            <a href="#">Red</a>
+        </div>
+
+        <a href="#" class="dropdown-btn">Chat</a>
+        <div class="dropdown-container">
+            <a href="#">User Fire</a>
+            <a href="#">User Police</a>
+            <a href="#">User Sheriff</a>
+        </div>
+
+        <a href="#" class="dropdown-btn">Emergency</a>
+        <div class="dropdown-container">
+            <a href="#">Call 911</a>
+            <a href="#">Mark the Area</a>
+        </div>
+    </div>
+	 <input id="pac-input" class="controls" type="text" placeholder="Search">
     <div id="map"></div>
+
+    <!-- JavaScript para desplegar los submenús -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Seleccionar todos los botones desplegables
+            const dropdownBtns = document.querySelectorAll(".dropdown-btn");
+
+            dropdownBtns.forEach(btn => {
+                btn.addEventListener("click", function() {
+                    // Encontrar el contenedor del submenú siguiente
+                    const dropdownContainer = this.nextElementSibling;
+
+                    // Alternar el despliegue del submenú
+                    if (dropdownContainer.style.display === "block") {
+                        dropdownContainer.style.display = "none";
+                    } else {
+                        dropdownContainer.style.display = "block";
+                    }
+                });
+            });
+        });
+    </script>
+	
 </body>
 </html>
-

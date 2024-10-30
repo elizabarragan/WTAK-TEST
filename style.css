@@ -177,8 +177,8 @@ body {
     margin: 15px;
     border: 1px solid transparent;
     border-radius: 2px 0 0 2px;
+	-moz-box-sizing: border-box;
     box-sizing: border-box;
-    -moz-box-sizing: border-box;
     height: 32px;
     outline: none;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
@@ -186,5 +186,46 @@ body {
     font-size: 15px;
     font-weight: 300;
     text-overflow: ellipsis;
-    width: 240px;
+    width: 180px;
+}
+/* Ocultar las opciones de cada sección por defecto */
+.dropdown-container {
+    display: none;
+    padding-left: 15px;
+}
+
+/* Opcional: Estilos para el botón desplegable */
+.dropdown-btn {
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilo de barra lateral */
+.sidebar {
+    height: 220px;
+    width: 150px;
+    position: absolute;
+    top: 175px;
+    left: 0;
+    background-color: #013420;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+}
+
+.dropdown-container {
+    display: none;
+    background-color: #262626;
+    padding-left: 8px;
+}
+
+.dropdown-container a {
+    padding: 8px 16px;
 }
